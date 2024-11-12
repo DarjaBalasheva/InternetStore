@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-from dotenv import load_dotenv
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -64,8 +66,7 @@ ROOT_URLCONF = 'InternetStoreFur.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,11 +88,11 @@ WSGI_APPLICATION = 'InternetStoreFur.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydatabase',
-        'USER': 'superuser',
-        'PASSWORD': 'superpassword',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv("NAME_POSTGRESQL"),
+        'USER': os.getenv("USER_POSTGRESQL"),
+        'PASSWORD': os.getenv("PASSWORD_POSTGRESQL"),
+        'HOST': os.getenv("HOST_POSTGRESQL"),
+        'PORT': os.getenv("PORT_POSTGRESQL"),
     }
 }
 

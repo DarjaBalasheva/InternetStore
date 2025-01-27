@@ -1,11 +1,4 @@
 .env
 .idea/
-.DS_Store
-__pycache__/
-InternetStoreFur/__pycache__/
-products/__pycache__/
-products/migrations/__pycache__/
-products/models/__pycache__/
-products/tests/__pycache__/
-products/tests/__pycache__/
-products/views__pycache__/
+**/.DS_Store
+**/__pycache__/

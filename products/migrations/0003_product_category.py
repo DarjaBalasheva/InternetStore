@@ -5,15 +5,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('products', '0002_rename_characters_product_characteristics_and_more'),
+        ("products", "0002_rename_characters_product_characteristics_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='category',
-            field=models.ForeignKey(default='29b5de09-979a-47d5-a988-a4678cd8bdde', on_delete=django.db.models.deletion.CASCADE, to='products.category'),
+            model_name="product",
+            name="category",
+            field=models.ForeignKey(
+                default="29b5de09-979a-47d5-a988-a4678cd8bdde",
+                on_delete=django.db.models.deletion.CASCADE,
+                to="products.category",
+            ),
         ),
     ]

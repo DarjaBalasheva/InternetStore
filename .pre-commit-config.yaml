@@ -16,12 +16,10 @@ repos:
     rev: v2.2.0
     hooks:
     -   id: autoflake
-
-##Добавляет пробелы и отступы согласно стандартам
-#-   repo: https://github.com/psf/black
-#    rev: 23.7.0
-#    hooks:
-#    - id: black
+        args: ["--remove-all-unused-imports",
+               "--remove-unused-variables",
+               "--in-place",
+               "--expand-star-imports"]
 
 # Отсортировывает импорты в проекте
 -   repo: https://github.com/pycqa/isort
@@ -30,6 +28,13 @@ repos:
       - id: isort
         exclude: __init__.py
         args: [ --profile, black, --filter-files ]
+
+
+#Добавляет пробелы и отступы согласно стандартам
+-   repo: https://github.com/psf/black
+    rev: 23.7.0
+    hooks:
+    - id: black
 
 # Обновляет синтаксис Python кода в соответствии с последними версиями
 -   repo: https://github.com/asottile/pyupgrade

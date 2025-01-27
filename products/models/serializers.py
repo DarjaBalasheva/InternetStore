@@ -1,11 +1,12 @@
 from rest_framework import serializers
-from .models import User, Category, Product
+
+from .models import Category, Product, User
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'firstname', 'lastname']
+        fields = ["id", "firstname", "lastname"]
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -13,12 +14,14 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ['id', 'name', 'children']  # Возвращаем id, name и дочерние категории
+        fields = ["id", "name", "children"]  # Возвращаем id, name и дочерние категории
 
     def get_children(self, obj):
         """Получаем дочерние категории для текущей категории"""
         children = Category.objects.filter(parent=obj)
-        return CategorySerializer(children, many=True).data  # Рекурсивно сериализуем дочерние категории
+        return CategorySerializer(
+            children, many=True
+        ).data  # Рекурсивно сериализуем дочерние категории
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -26,10 +29,18 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'price', 'characteristics', 'image', 'category']
+        fields = [
+            "id",
+            "name",
+            "description",
+            "price",
+            "characteristics",
+            "image",
+            "category",
+        ]
 
 
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ['id', 'user', 'products']
+        fields = ["id", "user", "products"]

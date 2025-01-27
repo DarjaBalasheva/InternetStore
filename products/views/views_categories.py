@@ -1,9 +1,7 @@
 from django.http import JsonResponse
-from ..models.models import User, Product, Category
 from django.views import View
-from django.http import HttpResponse
 
-from ..renderens import UTF8JSONRenderer
+from ..models.models import Category
 
 
 class CategoryListView(View):
@@ -18,9 +16,13 @@ class CategoryListView(View):
         category_data = []
         for category in categories:
             children = Category.objects.filter(parent=category)
-            category_data.append({
-                "id": category.id,
-                "name": category.name,
-                "children": self.get_categories_data(children)  # Рекурсивно для дочерних категорий
-            })
+            category_data.append(
+                {
+                    "id": category.id,
+                    "name": category.name,
+                    "children": self.get_categories_data(
+                        children
+                    ),  # Рекурсивно для дочерних категорий
+                }
+            )
         return category_data
